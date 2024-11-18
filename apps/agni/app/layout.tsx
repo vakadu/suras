@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 
 import '../assets/css/global.css';
+import Header from '../components/header';
 
 export const metadata = {
 	title: 'Biggr',
@@ -41,7 +42,12 @@ const sathoshi = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" className={`${sathoshi.variable} font-sathoshi scroll-smooth`}>
-			<body>{children}</body>
+			<body>
+				<main className="pt-[80px] flex flex-col">
+					<Header />
+					{children}
+				</main>
+			</body>
 		</html>
 	);
 }
