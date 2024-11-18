@@ -1,20 +1,29 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2020", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {}
-  },
-  "exclude": ["node_modules", "tmp"]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["es2020", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@devas/hooks": ["libs/hooks/src/index.ts"],
+			"@devas/hooks/server": ["libs/hooks/src/server.ts"],
+			"@devas/icons": ["libs/icons/src/index.ts"],
+			"@devas/icons/server": ["libs/icons/src/server.ts"],
+			"@devas/primitives": ["libs/primitives/src/index.ts"],
+			"@devas/primitives/server": ["libs/primitives/src/server.ts"],
+			"@devas/ui": ["libs/ui/src/index.ts"],
+			"@devas/ui/server": ["libs/ui/src/server.ts"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
 }
