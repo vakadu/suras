@@ -22,7 +22,9 @@
 			"@devas/primitives": ["libs/primitives/src/index.ts"],
 			"@devas/primitives/server": ["libs/primitives/src/server.ts"],
 			"@devas/ui": ["libs/ui/src/index.ts"],
-			"@devas/ui/server": ["libs/ui/src/server.ts"]
+			"@devas/ui/server": ["libs/ui/src/server.ts"],
+			"@agni/components": ["apps/agni/components/index.ts"],
+			"@agni/store/*": ["apps/agni/store/*"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]
