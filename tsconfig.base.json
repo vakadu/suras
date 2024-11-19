@@ -15,6 +15,8 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@agni/components": ["apps/agni/components/index.ts"],
+			"@agni/store/*": ["apps/agni/store/*"],
 			"@devas/hooks": ["libs/hooks/src/index.ts"],
 			"@devas/hooks/server": ["libs/hooks/src/server.ts"],
 			"@devas/icons": ["libs/icons/src/index.ts"],
@@ -23,8 +25,8 @@
 			"@devas/primitives/server": ["libs/primitives/src/server.ts"],
 			"@devas/ui": ["libs/ui/src/index.ts"],
 			"@devas/ui/server": ["libs/ui/src/server.ts"],
-			"@agni/components": ["apps/agni/components/index.ts"],
-			"@agni/store/*": ["apps/agni/store/*"]
+			"@devas/utils": ["libs/utils/src/index.ts"],
+			"@devas/utils/server": ["libs/utils/src/server.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

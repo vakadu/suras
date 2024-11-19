@@ -4,136 +4,56 @@
 
 @layer base {
 	:root {
-		--color-brand: 0 122 101;
 		--background: 0 0% 100%;
-		--foreground: 240 10% 3.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 240 10% 3.9%;
+		--foreground: 222.2 47.4% 11.2%;
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
 		--popover: 0 0% 100%;
-		--popover-foreground: 240 10% 3.9%;
-		--primary: 240 5.9% 10%;
-		--primary-foreground: 0 0% 98%;
-		--secondary: 240 4.8% 95.9%;
-		--secondary-foreground: 240 5.9% 10%;
-		--muted: 240 4.8% 95.9%;
-		--muted-foreground: 240 3.8% 46.1%;
-		--accent: 240 4.8% 95.9%;
-		--accent-foreground: 240 5.9% 10%;
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 0 0% 100%;
-		--border: 240 5.9% 90%;
-		--input: 240 4.9% 83.9%;
-		--ring: 240 5% 64.9%;
+		--popover-foreground: 222.2 47.4% 11.2%;
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 47.4% 11.2%;
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--destructive: 0 100% 50%;
+		--destructive-foreground: 210 40% 98%;
+		--ring: 215 20.2% 65.1%;
 		--radius: 0.5rem;
 	}
 
-	html,
-	body {
-		@apply font-normal text-black-1 h-full;
-		scroll-behavior: smooth !important;
+	.dark {
+		--background: 224 71% 4%;
+		--foreground: 213 31% 91%;
+		--muted: 223 47% 11%;
+		--muted-foreground: 215.4 16.3% 56.9%;
+		--accent: 216 34% 17%;
+		--accent-foreground: 210 40% 98%;
+		--popover: 224 71% 4%;
+		--popover-foreground: 215 20.2% 65.1%;
+		--border: 216 34% 17%;
+		--input: 216 34% 17%;
+		--card: 224 71% 4%;
+		--card-foreground: 213 31% 91%;
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 1.2%;
+		--secondary: 222.2 47.4% 11.2%;
+		--secondary-foreground: 210 40% 98%;
+		--destructive: 0 63% 31%;
+		--destructive-foreground: 210 40% 98%;
+		--ring: 216 34% 17%;
 	}
-
-	input[type='number']::-webkit-inner-spin-button,
-	input[type='number']::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-}
-
-body {
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-size-adjust: 100%;
-}
-
-body {
-	@apply bg-grey-bg3;
-}
-
-@layer utilities {
-	/* Hide scrollbar for Chrome, Safari and Opera */
-	.no-scrollbar::-webkit-scrollbar {
-		display: none;
-	}
-	/* Hide scrollbar for IE, Edge and Firefox */
-	.no-scrollbar {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-	}
-}
-
-.react-calendar__tile--active {
-	@apply bg-primary-1 rounded-8;
-}
-
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
-	@apply bg-primary-1;
-}
-
-.react-calendar__month-view__days__day--weekend {
-	@apply text-red-1;
-}
-
-.react-calendar {
-	@apply border-grey-2 rounded-8 shadow-base;
-}
-
-.react-datepicker__day--selected,
-.react-datepicker__day--selected:hover {
-	@apply bg-primary-1;
-}
-
-.react-datepicker-wrapper {
-	@apply flex items-center gap-12 w-full justify-between relative;
-}
-
-.react-datepicker-wrapper input {
-	border: 1px solid #544c4c24;
-	@apply w-full h-54 px-12 rounded-8 text-14;
-}
-
-.react-datepicker-wrapper input:focus-visible {
-	@apply !outline-none;
-}
-
-.calender .react-datepicker-wrapper {
-	@apply max-w-[140px] w-auto;
-}
-
-.calender .react-datepicker-wrapper input {
-	@apply text-24 bg-purple text-white;
-}
-
-.edit-calender .react-datepicker-wrapper {
-	@apply w-[42px] h-[42px];
-}
-
-.react-select__control {
-	@apply h-full;
-}
-
-.pet .swiper-button-prev:after,
-.swiper-button-next:after {
-	@apply !text-[18px];
-}
-
-.pet .swiper-button-prev:after,
-.swiper-button-next:after {
-	@apply !text-[18px];
-}
-
-.pet .swiper-button-prev,
-.swiper-container-rtl .swiper-button-next {
-	@apply left-0 bg-white rounded-tr-8 rounded-br-8;
-}
-
-.pet .swiper-button-next,
-.swiper-container-rtl .swiper-button-prev {
-	@apply right-0 bg-white rounded-tl-8 rounded-bl-8;
 }
 
 @layer base {
-	img {
-		display: initial;
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply antialiased bg-background text-foreground;
 	}
 }

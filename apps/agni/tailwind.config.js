@@ -2,14 +2,15 @@ const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
 
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
+	darkMode: ['class'],
 	content: [
 		join(__dirname, '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'),
 		'libs/ui/src/**/!(*.stories|*.spec).{js,ts,jsx,tsx}',
 		...createGlobPatternsForDependencies(__dirname),
 	],
 	presets: [require('../../tailwind-workspace-preset.js')],
-	darkMode: 'class',
 	theme: {
 		extend: {
 			fontFamily: {
@@ -17,21 +18,43 @@ module.exports = {
 			},
 			colors: {
 				brand: '#007A65',
-				primary: {
-					1: '#007A65',
-					2: '#007A6533',
-					3: '#E2F0DD',
-					4: '#F2FFFD',
-					5: '#E7FAF4',
-				},
-				red: {
-					1: '#B03A2E',
-					2: '#F2D7D5',
-				},
+				border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
 				black: {
 					1: '#444444',
 					2: '#222B45',
 					3: '#000000',
+				},
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))',
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))',
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))',
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))',
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))',
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))',
+				},
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))',
 				},
 				grey: {
 					1: '#F2F3F4',
@@ -50,22 +73,26 @@ module.exports = {
 					border4: '#444449',
 					text3: '#9E9E9E',
 				},
-				purple: '#827397',
-				purple2: '#6B779A',
-				purple3: '#82739733',
+				red: {
+					1: '#B03A2E',
+					2: '#F2D7D5',
+				},
 			},
-			boxShadow: {
-				base: '0px 0px 1px rgba(40, 41, 61, 0.08), 0px 0.5px 2px rgba(96, 97, 112, 0.16)',
-				base2: '0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 112, 0.16)',
-				base3: '16px 10px 40px rgba(15, 23, 42, 0.22)',
-				deep: '-2px 0px 8px rgba(0, 0, 0, 0.16)',
-				dropdown: '0px 4px 8px rgba(0, 0, 0, 0.08)',
-				testi: '0px 4px 24px rgba(0, 0, 0, 0.06)',
-			},
-			transitionTimingFunction: {
-				ease1: 'cubic-bezier(0.39, 0.575, 0.565, 1)',
+			borderRadius: {
+				lg: `var(--radius)`,
+				md: `calc(var(--radius) - 2px)`,
+				sm: 'calc(var(--radius) - 4px)',
+				6: '6px',
+				7: '7px',
+				8: '8px',
+				9: '9px',
+				10: '10px',
+				12: '12px',
+				14: '14px',
+				15: '15px',
+				16: '16px',
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwindcss-animate')],
 };
