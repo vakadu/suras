@@ -1,3 +1,7 @@
+export * from './lib/carousel';
+export * from './lib/aspect-ratio';
+export * from './lib/alert';
+export * from './lib/dialog';
 export * from './lib/toast';
 export * from './lib/skeleton';
 export * from './lib/button';
