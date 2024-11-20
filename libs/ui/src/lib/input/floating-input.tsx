@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import Input from './input';
-import { Label } from '../label/label';
+import { Label } from '../label';
 
 export interface FloatingInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	label: string;

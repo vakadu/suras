@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Sheet from './sheet';
+import Sheet from '.';
 
 describe('Sheet', () => {
 	it('should render successfully', () => {

@@ -17,6 +17,7 @@
 		"paths": {
 			"@agni/components": ["apps/agni/components/index.ts"],
 			"@agni/store/*": ["apps/agni/store/*"],
+			"@agni/actions/*": ["apps/agni/actions/*"],
 			"@devas/hooks": ["libs/hooks/src/index.ts"],
 			"@devas/hooks/server": ["libs/hooks/src/server.ts"],
 			"@devas/icons": ["libs/icons/src/index.ts"],
