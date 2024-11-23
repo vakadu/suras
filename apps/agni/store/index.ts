@@ -5,6 +5,7 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 import storage from 'redux-persist/lib/storage';
 
 import layoutReducer from './layout-reducer';
+import authReducer from './auth';
 
 const persistConfig = {
 	key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	layout: layoutReducer,
+	auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

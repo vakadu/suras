@@ -1,3 +1,5 @@
+'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -14,10 +16,11 @@ import {
 	FormMessage,
 } from '@devas/ui';
 import { phoneValidator } from '@devas/utils';
-import getOtp from '@agni/actions/otp';
-import { handleOtp, setLoading } from '@agni/store/layout-reducer';
+import { setLoading } from '@agni/store/layout-reducer';
 import { RootState } from '@agni/store/index';
 import { useToast } from '@devas/hooks';
+import { getOtp } from '@agni/actions/login';
+import { useLogin } from '../context';
 
 // Define the base schema for mobile number
 const baseSchema = z.object({
@@ -37,11 +40,12 @@ const existingUserSchema = baseSchema;
 // Type that can be either newUser or existingUser form data
 type FormData = z.infer<typeof newUserSchema> | z.infer<typeof existingUserSchema>;
 
-export default function LoginForm() {
+export function LoginForm() {
 	const [isNewUser, setNewUser] = useState(false);
 	const dispatch = useDispatch();
 	const layoutState = useSelector((state: RootState) => state.layout);
 	const { toast } = useToast();
+	const { toggleOtp, handleMobileNumber } = useLogin();
 
 	const formSchema = isNewUser ? newUserSchema : existingUserSchema;
 
@@ -60,7 +64,8 @@ export default function LoginForm() {
 				toast({
 					title: 'OTP sent successfully!',
 				});
-				dispatch(handleOtp(true));
+				toggleOtp(true);
+				handleMobileNumber(values.mobileNumber);
 			}
 			if (response.status === 'error' && response.isNewUser) {
 				setNewUser(true);
@@ -88,6 +93,7 @@ export default function LoginForm() {
 										id="mobileNumber"
 										placeholder=""
 										isError={!!fieldState.error}
+										maxLength={10}
 										{...field}
 									/>
 								</FormControl>
@@ -158,3 +164,5 @@ export default function LoginForm() {
 		</Form>
 	);
 }
+
+export default LoginForm;

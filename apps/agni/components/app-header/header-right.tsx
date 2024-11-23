@@ -1,5 +1,5 @@
 import { CartIcon } from '@devas/icons/server';
-import LoginSheet from './login-sheet';
+import { LoginSheet } from '../login/ui';
 
 export default function HeaderRight() {
 	return (

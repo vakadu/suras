@@ -2,10 +2,10 @@
 
 import axios from 'axios';
 
-import { IOtpPayload, LoginFormData } from './model';
+import { IOtpPayload, LoginFormData } from '../schema';
 import { API_ENDPOINTS } from '@agni/helpers/api-endpoints';
 
-export default async function getOtp(formData: any, newUser: boolean) {
+const getOtp = async (formData: any, newUser: boolean) => {
 	try {
 		const { mobileNumber, name, email } = formData as LoginFormData;
 		let payload;
@@ -35,4 +35,6 @@ export default async function getOtp(formData: any, newUser: boolean) {
 	} catch (error) {
 		throw error;
 	}
-}
+};
+
+export { getOtp };
