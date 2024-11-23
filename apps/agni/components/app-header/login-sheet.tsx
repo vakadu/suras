@@ -2,6 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { UserRound, X } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
 import {
 	Sheet,
@@ -16,8 +17,13 @@ import { RootState } from '@agni/store/index';
 import { handleLoginSidebar } from '@agni/store/layout-reducer';
 import LoginForm from '../login/form';
 
+const OtpForm = dynamic(() => import('../login/otp-form'), {
+	loading: () => <span>Loading...</span>,
+});
+
 export default function LoginSheet() {
 	const isLoginSidebarOpen = useSelector((state: RootState) => state.layout.loginSidebar);
+	const isOtpShown = useSelector((state: RootState) => state.layout.showOtp);
 	const dispatch = useDispatch();
 
 	const handleSidebarChange = (isOpen: boolean) => {
@@ -40,7 +46,7 @@ export default function LoginSheet() {
 					<SheetTitle className="!text-32">Login</SheetTitle>
 				</SheetHeader>
 				<SheetDescription></SheetDescription>
-				<LoginForm />
+				{isOtpShown ? <OtpForm /> : <LoginForm />}
 			</SheetContent>
 		</Sheet>
 	);
