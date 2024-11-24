@@ -13,3 +13,10 @@ export interface IOtpPayload {
 	email?: string;
 	onboardingType?: string;
 }
+
+export interface LoginPayload {
+	username: string;
+	isWO: number;
+	isNewUser: boolean;
+	otp: string;
+}

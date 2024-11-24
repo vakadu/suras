@@ -1,14 +1,30 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { FloatingInput, Button } from '@devas/ui';
 import { userLogin } from '@agni/actions/login';
 import { useLogin } from '../context';
+import { useToast } from '@devas/hooks';
+import { handleLoginSidebar } from '@agni/store/layout-reducer';
 
 export function OtpForm() {
-	const [error, action, isPending] = useActionState(userLogin, null);
+	const [state, action, isPending] = useActionState(userLogin, null);
 	const { mobileNumber } = useLogin();
+	const [otp, setOtp] = useState('');
+	const { toast } = useToast();
+	const error = (state as { error: string })?.error;
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (state?.status === 'success') {
+			toast({
+				title: 'Logged In!',
+			});
+			dispatch(handleLoginSidebar(false));
+		}
+	}, [state]);
 
 	return (
 		<div>
@@ -17,6 +33,7 @@ export function OtpForm() {
 			</div>
 			<form className="pt-24" action={action}>
 				<div>
+					<input name="mobileNumber" value={mobileNumber as string} type="hidden" />
 					<FloatingInput
 						label="Enter your 6 digit OTP"
 						type="numeric"
@@ -24,18 +41,18 @@ export function OtpForm() {
 						name="otp"
 						placeholder=""
 						maxLength={6}
-						isError={!!error?.error}
+						isError={!!error}
+						value={otp}
+						onChange={(e) => setOtp(e.target.value)}
 					/>
-					{!!error?.error && (
-						<span className="text-12 mt-6 text-destructive">{error?.error}</span>
-					)}
+					{!!error && <span className="text-12 mt-6 text-destructive">{error}</span>}
 				</div>
 				<Button
-					disabled={isPending}
+					disabled={isPending || otp.length < 6}
 					loading={isPending}
 					loadingText="Verifying OTP..."
-					type="submit"
 					className="w-full !mt-24"
+					type="submit"
 				>
 					Login
 				</Button>
