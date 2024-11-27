@@ -4,9 +4,9 @@ import axios from 'axios';
 import { z } from 'zod';
 import { cookies } from 'next/headers';
 
-import { API_ENDPOINTS } from '@agni/helpers/api-endpoints';
 import { otpValidator } from '@devas/utils';
 import { LoginPayload } from '../schema';
+import { API_ENDPOINTS } from '@agni/helpers/api-endpoints';
 
 const schema = z.object({
 	otp: z
@@ -29,7 +29,7 @@ const userLogin = async (prevState: any, formData: FormData) => {
 			otp: otpValidation.otp,
 		} as LoginPayload;
 		const { data } = await axios.post(
-			`${process.env.BASE_PATH}/${API_ENDPOINTS.LOGIN}`,
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/${API_ENDPOINTS.LOGIN}`,
 			payload
 		);
 		if (data?.status === 'error') {

@@ -28,7 +28,7 @@ const getOtp = async (formData: any, newUser: boolean) => {
 			} as IOtpPayload;
 		}
 		const { data } = await axios.post(
-			`${process.env.BASE_PATH}/${API_ENDPOINTS.GET_OTP}`,
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/${API_ENDPOINTS.GET_OTP}`,
 			payload
 		);
 		return data;

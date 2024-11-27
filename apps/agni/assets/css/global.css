@@ -57,3 +57,31 @@
 		@apply antialiased bg-background text-foreground;
 	}
 }
+
+.container {
+	@apply w-full mx-auto px-16;
+}
+
+@media (min-width: 640px) {
+	.container {
+		@apply max-w-[640px];
+	}
+}
+
+@media (min-width: 768px) {
+	.container {
+		@apply max-w-[768px];
+	}
+}
+
+@media (min-width: 1024px) {
+	.container {
+		@apply max-w-[1024px] px-4;
+	}
+}
+
+@media (min-width: 1280px) {
+	.container {
+		@apply max-w-[1280px] px-0;
+	}
+}
