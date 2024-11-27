@@ -2,26 +2,26 @@
 
 import { useActionState, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'sonner';
 
 import { FloatingInput, Button } from '@devas/ui';
 import { userLogin } from '@agni/actions/login';
 import { useLogin } from '../context';
-import { useToast } from '@devas/hooks';
 import { handleLoginSidebar } from '@agni/store/layout-reducer';
+import { authenticateUser } from '@agni/store/auth';
+import { AppDispatch } from '@agni/store/index';
 
 export function OtpForm() {
 	const [state, action, isPending] = useActionState(userLogin, null);
 	const { mobileNumber } = useLogin();
 	const [otp, setOtp] = useState('');
-	const { toast } = useToast();
 	const error = (state as { error: string })?.error;
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	useEffect(() => {
 		if (state?.status === 'success') {
-			toast({
-				title: 'Logged In!',
-			});
+			dispatch(authenticateUser({ token: state?.token?.accessToken }));
+			toast.success('Logged In!');
 			dispatch(handleLoginSidebar(false));
 		}
 	}, [state]);

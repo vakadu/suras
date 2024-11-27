@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { z } from 'zod';
+import { cookies } from 'next/headers';
 
 import { API_ENDPOINTS } from '@agni/helpers/api-endpoints';
 import { otpValidator } from '@devas/utils';
@@ -19,6 +20,8 @@ const userLogin = async (prevState: any, formData: FormData) => {
 		const mobileNumber = formData.get('mobileNumber')?.toString();
 		const otp = formData.get('otp')?.toString();
 		const otpValidation = schema.parse({ otp });
+		const cookieStore = await cookies();
+
 		const payload = {
 			username: mobileNumber,
 			isWO: 1,
@@ -32,14 +35,16 @@ const userLogin = async (prevState: any, formData: FormData) => {
 		if (data?.status === 'error') {
 			return { error: data?.msg };
 		} else {
+			const token = data?.token?.accessToken;
+			const refreshToken = data?.token?.refreshToken;
+			cookieStore.set('token', token, { secure: true });
+			cookieStore.set('refreshToken', refreshToken, { secure: true });
 			return data;
 		}
 	} catch (error) {
 		if (error instanceof z.ZodError) {
 			return { error: error.errors[0].message };
 		}
-		console.log(error);
-
 		return { error: 'Something went wrong. Please try again later.' };
 	}
 };

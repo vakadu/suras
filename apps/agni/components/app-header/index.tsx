@@ -1,3 +1,4 @@
+import { ImagePlaceholder } from '@devas/ui';
 import HeaderRight from './header-right';
 
 export function Header() {
@@ -6,7 +7,11 @@ export function Header() {
 			<div className="max-w-[1200px] min-w-[1200px] mx-auto h-[80px]">
 				<div className="flex justify-between items-center h-full">
 					<div>
-						<span>Biggr</span>
+						<ImagePlaceholder
+							src="/images/logo.jpg"
+							containerClasses="w-[120px] h-[80px]"
+							imageClasses="rounded-full object-contain"
+						/>
 					</div>
 					<HeaderRight />
 				</div>

@@ -1,0 +1,37 @@
+import Image from 'next/image';
+
+export interface ImagePlaceholderProps extends React.HTMLAttributes<HTMLElement> {
+	alt?: string;
+	src: string;
+	containerClasses?: string;
+	imageClasses?: string;
+	sizes?: string;
+}
+
+export const shimmer = () => `
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" style="fill:rgb(211,211,211);" />
+</svg>`;
+
+export const toBase64 = (str: string) =>
+	typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str);
+
+function ImagePlaceholder(props: ImagePlaceholderProps) {
+	const { alt = 'biggr', src, containerClasses, imageClasses, sizes = '100vw', ...rest } = props;
+
+	return (
+		<figure className={`relative ${containerClasses}`} {...rest}>
+			<Image
+				src={src}
+				alt={alt}
+				fill
+				sizes={sizes}
+				className={imageClasses}
+				placeholder="blur"
+				blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
+			/>
+		</figure>
+	);
+}
+
+export { ImagePlaceholder };

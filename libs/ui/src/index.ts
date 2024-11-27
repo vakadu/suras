@@ -1,3 +1,4 @@
+export * from './lib/image';
 export * from './lib/carousel';
 export * from './lib/aspect-ratio';
 export * from './lib/alert';

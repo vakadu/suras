@@ -15,12 +15,10 @@ type AuthState = {
 	pad_payment: number | null;
 	phone_number: number;
 	pincode: number | null;
-	refreshToken: string | null;
 	role: string;
 	seller_id: number | null;
 	store_category: string | null;
 	store_type: string | null;
-	token: string | null;
 	user_id: number;
 	username: string;
 	zone: string | null;
@@ -40,12 +38,10 @@ const initialState: AuthState = {
 	pad_payment: null,
 	phone_number: 0,
 	pincode: null,
-	refreshToken: null,
 	role: '',
 	seller_id: null,
 	store_category: null,
 	store_type: null,
-	token: null,
 	user_id: 0,
 	username: '',
 	zone: null,
@@ -53,25 +49,20 @@ const initialState: AuthState = {
 
 type AuthenticatePayload = {
 	token: string;
-	refreshToken: string;
-	navigateFunction: () => void;
 };
 
 type JwtPayload = Partial<AuthState>;
 
 export const authenticateUser = createAsyncThunk(
 	'auth/authenticateUser',
-	async ({ token, refreshToken, navigateFunction }: AuthenticatePayload, { dispatch }) => {
+	async ({ token }: AuthenticatePayload, { dispatch }) => {
 		const userDetails = jwtDecode<JwtPayload>(token);
 		dispatch(
 			updateUser({
 				loggedIn: true,
-				token,
-				refreshToken,
 				...userDetails,
 			})
 		);
-		navigateFunction();
 	}
 );
 

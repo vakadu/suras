@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 import {
 	Button,
@@ -18,7 +19,6 @@ import {
 import { phoneValidator } from '@devas/utils';
 import { setLoading } from '@agni/store/layout-reducer';
 import { RootState } from '@agni/store/index';
-import { useToast } from '@devas/hooks';
 import { getOtp } from '@agni/actions/login';
 import { useLogin } from '../context';
 
@@ -44,7 +44,6 @@ export function LoginForm() {
 	const [isNewUser, setNewUser] = useState(false);
 	const dispatch = useDispatch();
 	const layoutState = useSelector((state: RootState) => state.layout);
-	const { toast } = useToast();
 	const { toggleOtp, handleMobileNumber } = useLogin();
 
 	const formSchema = isNewUser ? newUserSchema : existingUserSchema;
@@ -61,9 +60,7 @@ export function LoginForm() {
 			dispatch(setLoading(true));
 			const response = await getOtp(values, isNewUser);
 			if (response.status === 'success') {
-				toast({
-					title: 'OTP sent successfully!',
-				});
+				toast('OTP sent successfully!');
 				toggleOtp(true);
 				handleMobileNumber(values.mobileNumber);
 			}
@@ -71,7 +68,6 @@ export function LoginForm() {
 				setNewUser(true);
 			}
 		} catch (error) {
-			console.log(error, 'rty');
 		} finally {
 			dispatch(setLoading(false));
 		}

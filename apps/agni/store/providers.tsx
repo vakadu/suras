@@ -11,7 +11,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				{children}
-				<Toaster />
+				<Toaster closeButton richColors position="bottom-left" />
 			</PersistGate>
 		</Provider>
 	);
