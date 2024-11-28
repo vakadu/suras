@@ -1,62 +1,104 @@
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAction } from 'next-safe-action/hooks';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { useEffect } from 'react';
 import { toast } from 'sonner';
+import { useDispatch } from 'react-redux';
 
-import { FloatingInput, Button } from '@devas/ui';
-import { userLogin } from '@agni/actions/login';
+import {
+	FloatingInput,
+	Button,
+	Form,
+	FormField,
+	FormItem,
+	FormControl,
+	FormMessage,
+} from '@devas/ui';
 import { useLogin } from '../context';
-import { handleLoginSidebar } from '@agni/store/layout-reducer';
-import { authenticateUser } from '@agni/store/auth';
-import { AppDispatch } from '@agni/store/index';
+import { userLogin } from '../../../actions/login';
+import { otpValidator } from '@devas/utils';
+import { handleLoginSidebar } from '../../../store/layout-reducer';
+
+const schema = z.object({
+	otp: z
+		.string()
+		.length(6, 'OTP must be exactly 6 digits')
+		.regex(otpValidator, 'OTP is not valid'),
+});
 
 export function OtpForm() {
-	const [state, action, isPending] = useActionState(userLogin, null);
-	const { mobileNumber } = useLogin();
-	const [otp, setOtp] = useState('');
-	const error = (state as { error: string })?.error;
-	const dispatch = useDispatch<AppDispatch>();
+	const { mobileNumber, toggleOtp } = useLogin();
+	const { execute, result, isExecuting } = useAction(userLogin);
+	const dispatch = useDispatch();
+
+	const form = useForm({
+		resolver: zodResolver(schema),
+		defaultValues: {
+			otp: '',
+		},
+	});
 
 	useEffect(() => {
-		if (state?.status === 'success') {
-			dispatch(authenticateUser({ token: state?.token?.accessToken }));
+		if (!result?.data) return;
+		const { status, msg } = result.data;
+		if (status === 'error') {
+			form.setError('otp', { type: 'manual', message: msg });
+		} else {
 			toast.success('Logged In!');
 			dispatch(handleLoginSidebar(false));
+			toggleOtp(false);
 		}
-	}, [state]);
+	}, [dispatch, form, result, toggleOtp]);
+
+	const onSubmit = async (values: any) => {
+		const payload = {
+			mobileNumber: mobileNumber as string,
+			otp: values?.otp,
+		};
+		execute(payload);
+	};
 
 	return (
 		<div>
 			<div className="text-14">
 				OTP sent to <span className="font-medium">+91 - {mobileNumber}</span>
 			</div>
-			<form className="pt-24" action={action}>
-				<div>
-					<input name="mobileNumber" value={mobileNumber as string} type="hidden" />
-					<FloatingInput
-						label="Enter your 6 digit OTP"
-						type="numeric"
-						id="otp"
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-24 pt-42">
+					<FormField
+						control={form.control}
 						name="otp"
-						placeholder=""
-						maxLength={6}
-						isError={!!error}
-						value={otp}
-						onChange={(e) => setOtp(e.target.value)}
+						render={({ field, fieldState }) => (
+							<FormItem>
+								<FormControl>
+									<FloatingInput
+										label="Enter your 6 digit OTP"
+										type="numeric"
+										id="otp"
+										placeholder=""
+										isError={!!fieldState.error}
+										maxLength={6}
+										{...field}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
 					/>
-					{!!error && <span className="text-12 mt-6 text-destructive">{error}</span>}
-				</div>
-				<Button
-					disabled={isPending || otp.length < 6}
-					loading={isPending}
-					loadingText="Verifying OTP..."
-					className="w-full !mt-24"
-					type="submit"
-				>
-					Login
-				</Button>
-			</form>
+					<Button
+						disabled={!form.formState.isValid}
+						loading={isExecuting}
+						loadingText="Verifying OTP..."
+						type="submit"
+						className="w-full !mt-42"
+					>
+						Login
+					</Button>
+				</form>
+			</Form>
 		</div>
 	);
 }

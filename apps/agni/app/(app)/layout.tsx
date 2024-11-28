@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { firebaseApp, Routes } from '../../helpers';
-import { Header } from '@agni/components';
+import { Header } from '../../components';
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
 	const [value, loading, error] = useDocument(
