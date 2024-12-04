@@ -21,6 +21,8 @@ import { useLogin } from '../context';
 import { userLogin } from '../../../actions/login';
 import { otpValidator } from '@devas/utils';
 import { handleLoginSidebar } from '../../../store/layout-reducer';
+import { authenticateUser } from '../../../store/auth';
+import { AppDispatch } from '../../../store';
 
 const schema = z.object({
 	otp: z
@@ -32,7 +34,7 @@ const schema = z.object({
 export function OtpForm() {
 	const { mobileNumber, toggleOtp } = useLogin();
 	const { execute, result, isExecuting } = useAction(userLogin);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const form = useForm({
 		resolver: zodResolver(schema),
@@ -47,6 +49,11 @@ export function OtpForm() {
 		if (status === 'error') {
 			form.setError('otp', { type: 'manual', message: msg });
 		} else {
+			dispatch(
+				authenticateUser({
+					token: result?.data?.token?.accessToken as string,
+				})
+			);
 			toast.success('Logged In!');
 			dispatch(handleLoginSidebar(false));
 			toggleOtp(false);

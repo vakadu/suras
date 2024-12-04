@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserRound } from 'lucide-react';
 
 import { Sheet, SheetTrigger } from '@devas/ui';
-import { RootState } from '@agni/store/index';
-import { handleLoginSidebar } from '@agni/store/layout-reducer';
 import { LoginProvider } from '../context';
 import ContentSheet from './sheet-content';
+import { RootState } from '../../../store';
+import { handleLoginSidebar } from '../../../store/layout-reducer';
 
 export function LoginSheet() {
 	const isLoginSidebarOpen = useSelector((state: RootState) => state.layout.loginSidebar);

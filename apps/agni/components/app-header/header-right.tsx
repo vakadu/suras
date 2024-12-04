@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { CartIcon } from '@devas/icons/server';
 import { LoginSheet } from '../login/ui';
-import { RootState } from '@agni/store/index';
+import { RootState } from '../../store';
+import AuthDropdown from './dropdown';
 
 export default function HeaderRight() {
 	const auth = useSelector((state: RootState) => state.auth);
@@ -14,7 +15,7 @@ export default function HeaderRight() {
 				<CartIcon width={24} height={24} />
 				<span className="text-14 font-medium">Cart</span>
 			</div>
-			{auth.loggedIn ? <span>My Account</span> : <LoginSheet />}
+			{auth.loggedIn ? <AuthDropdown /> : <LoginSheet />}
 		</div>
 	);
 }

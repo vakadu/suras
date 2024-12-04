@@ -1,5 +1,11 @@
+import dynamic from 'next/dynamic';
+
 import { ImagePlaceholder } from '@devas/ui';
-import HeaderRight from './header-right';
+
+const HeaderRight = dynamic(() => import('./header-right'), {
+	loading: () => <span>Loading...</span>,
+	ssr: false,
+});
 
 export function Header() {
 	return (

@@ -62,6 +62,10 @@
 	@apply w-full mx-auto px-16;
 }
 
+button {
+	@apply outline-none;
+}
+
 @media (min-width: 640px) {
 	.container {
 		@apply max-w-[640px];

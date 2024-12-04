@@ -18,7 +18,7 @@
 		],
 		"types": ["jest", "node"]
 	},
-	"files": ["./types/common.d.ts"],
+	"files": ["./types/common.d.ts", "./types/category.d.ts"],
 	"include": [
 		"**/*.ts",
 		"**/*.tsx",

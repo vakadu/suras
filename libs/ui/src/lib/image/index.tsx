@@ -17,7 +17,14 @@ export const toBase64 = (str: string) =>
 	typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str);
 
 function ImagePlaceholder(props: ImagePlaceholderProps) {
-	const { alt = 'biggr', src, containerClasses, imageClasses, sizes = '100vw', ...rest } = props;
+	const {
+		alt = 'biggr',
+		src,
+		containerClasses = '',
+		imageClasses,
+		sizes = '100vw',
+		...rest
+	} = props;
 
 	return (
 		<figure className={`relative ${containerClasses}`} {...rest}>

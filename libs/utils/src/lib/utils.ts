@@ -1,3 +1,7 @@
-export const phoneValidator = /^[6-9]\d{9}$/;
-
-export const otpValidator = /^[0-9]{1,6}$/;
+export const capitalize = (value: string) => {
+	return value
+		.toLowerCase()
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
+};
