@@ -1,1 +1,1 @@
-export * from './default';
+export { DefaultSkeleton } from './default';

@@ -15,16 +15,16 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@devas/hooks": ["libs/hooks/src/index.ts"],
-			"@devas/hooks/server": ["libs/hooks/src/server.ts"],
-			"@devas/icons": ["libs/icons/src/index.ts"],
-			"@devas/icons/server": ["libs/icons/src/server.ts"],
-			"@devas/primitives": ["libs/primitives/src/index.ts"],
-			"@devas/primitives/server": ["libs/primitives/src/server.ts"],
-			"@devas/ui": ["libs/ui/src/index.ts"],
-			"@devas/ui/server": ["libs/ui/src/server.ts"],
-			"@devas/utils": ["libs/utils/src/index.ts"],
-			"@devas/utils/server": ["libs/utils/src/server.ts"]
+			"@suras/hooks": ["libs/hooks/src/index.ts"],
+			"@suras/hooks/server": ["libs/hooks/src/server.ts"],
+			"@suras/icons": ["libs/icons/src/index.ts"],
+			"@suras/icons/server": ["libs/icons/src/server.ts"],
+			"@suras/primitives": ["libs/primitives/src/index.ts"],
+			"@suras/primitives/server": ["libs/primitives/src/server.ts"],
+			"@suras/ui": ["libs/ui/src/index.ts"],
+			"@suras/ui/server": ["libs/ui/src/server.ts"],
+			"@suras/utils": ["libs/utils/src/index.ts"],
+			"@suras/utils/server": ["libs/utils/src/server.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

@@ -1,0 +1,9 @@
+{
+	"name": "parjanya-e2e",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/parjanya-e2e/src",
+	"tags": [],
+	"implicitDependencies": ["parjanya"],
+	"// targets": "to see all targets run: nx show project parjanya-e2e --web",
+	"targets": {}
+}
