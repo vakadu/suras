@@ -1,0 +1,64 @@
+{
+	"name": "vayu",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/vayu",
+	"projectType": "application",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nx/next:build",
+			"outputs": ["{options.outputPath}"],
+			"defaultConfiguration": "production",
+			"options": {
+				"outputPath": "dist/apps/vayu"
+			},
+			"configurations": {
+				"development": {
+					"outputPath": "apps/vayu"
+				},
+				"production": {},
+				"analyze": {
+					"outputPath": "dist/apps/vayu",
+					"environment": {
+						"ANALYZE": "true"
+					}
+				}
+			}
+		},
+		"serve": {
+			"executor": "@nx/next:server",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "vayu:build",
+				"dev": true,
+				"port": 8002
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "vayu:build:development",
+					"dev": true
+				},
+				"production": {
+					"buildTarget": "vayu:build:production",
+					"dev": false
+				}
+			}
+		},
+		"export": {
+			"executor": "@nx/next:export",
+			"options": {
+				"buildTarget": "vayu:build:production"
+			}
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "apps/vayu/jest.config.ts"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		}
+	}
+}

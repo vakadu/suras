@@ -1,0 +1,9 @@
+{
+	"name": "vayu-e2e",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/vayu-e2e/src",
+	"tags": [],
+	"implicitDependencies": ["vayu"],
+	"// targets": "to see all targets run: nx show project vayu-e2e --web",
+	"targets": {}
+}
