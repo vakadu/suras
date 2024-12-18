@@ -45,7 +45,7 @@ export const Header = () => {
 							/>
 						</Link>
 						{isSticky && (
-							<div className="hidden lg:block flex-1">
+							<div className="hidden flex-1 lg:flex justify-end">
 								<Menu open={false} setOpen={() => null} />
 							</div>
 						)}

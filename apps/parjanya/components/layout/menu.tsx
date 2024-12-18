@@ -36,7 +36,7 @@ const Menu = ({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => vo
 					Features
 				</Link>
 				<Link
-					className="text-18 hover:text-brand lg:text-16 lg:leading-24 lg:w-auto block w-full lg:hidden"
+					className="text-18 hover:text-brand lg:text-16 lg:leading-24 lg:inline-block lg:w-auto block w-full"
 					href="#contact"
 					onClick={() => setOpen(!open)}
 				>
