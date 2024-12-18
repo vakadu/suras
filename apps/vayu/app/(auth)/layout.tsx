@@ -1,9 +1,9 @@
+import { ReactNode } from 'react';
 import Link from 'next/link';
 
-import LoginForm from './ui/form';
 import { ImagePlaceholder } from '@suras/ui';
 
-export default function Page() {
+export default function AuthLayout({ children }: { children: ReactNode }) {
 	return (
 		<section className="min-h-screen w-full overflow-hidden">
 			<div className="grid grid-cols-3 overflow-hidden min-h-screen">
@@ -24,7 +24,7 @@ export default function Page() {
 						<p className=" text-grey-text3 text-14 mb-16 mt-24">
 							Welcome to <span className="text-black font-semibold">Pemilyy</span>
 						</p>
-						<LoginForm />
+						{children}
 					</div>
 					<p className="text-12 py-24 px-16 text-center">
 						By clicking you agree to our{' '}

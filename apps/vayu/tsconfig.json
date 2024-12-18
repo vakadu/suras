@@ -18,8 +18,12 @@
 		],
 		"types": ["jest", "node"]
 	},
-	"files": ["./types/auth.d.ts"],
-
+	"files": [
+		"./types/auth.d.ts",
+		"./types/clinic.d.ts",
+		"./types/user.d.ts",
+		"./types/common.d.ts"
+	],
 	"include": [
 		"**/*.js",
 		"**/*.jsx",

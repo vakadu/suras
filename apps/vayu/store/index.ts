@@ -4,8 +4,6 @@ import logger from 'redux-logger';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 import storage from 'redux-persist/lib/storage';
 
-// import modalReducer from '../modal/modal.slice';
-// import snackbarReducer from '../snackbar/snackbar.slice';
 import layoutReducer from './layout';
 import authReducer from './auth';
 
@@ -16,8 +14,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	// modal: modalReducer,
-	// snackbar: snackbarReducer,
 	layout: layoutReducer,
 	auth: authReducer,
 });
