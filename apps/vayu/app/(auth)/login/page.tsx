@@ -18,7 +18,7 @@ import {
 	FormItem,
 	FormMessage,
 } from '@suras/ui';
-import { getOtpAction } from '../../../actions/auth/get-otp';
+import { getOtpAction } from '../../../actions';
 
 const schema = z.object({
 	mobileNumber: z
@@ -28,7 +28,7 @@ const schema = z.object({
 		.regex(phoneValidator, { message: 'Phone number is not valid' }),
 });
 
-const LoginForm = () => {
+export default function Page() {
 	const form = useForm({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -99,6 +99,4 @@ const LoginForm = () => {
 			</Form>
 		</div>
 	);
-};
-
-export default LoginForm;
+}
