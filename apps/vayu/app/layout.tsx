@@ -2,7 +2,7 @@ import localFont from 'next/font/local';
 import dynamic from 'next/dynamic';
 
 import '../assets/css/global.css';
-const Providers = dynamic(() => import('../services/providers'));
+const Providers = dynamic(() => import('../core/services/providers'));
 
 export const metadata = {
 	title: 'Pemilyy - Your Digital Pet Clinic Companion',

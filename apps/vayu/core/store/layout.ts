@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	mobileMenu: false,
-	// isCollapsed: themeConfig.dashboardLayout.menu.isCollapsed,
-	// isRTL: themeConfig.dashboardLayout.isRTL,
+	isOpen: false,
+	view: 'LOADING',
+	loadingText: '',
 };
 
 export const layoutSlice = createSlice({
@@ -12,6 +13,13 @@ export const layoutSlice = createSlice({
 	reducers: {
 		handleMobileMenu: (state, action) => {
 			state.mobileMenu = action.payload;
+		},
+		openModal: (state, action) => {
+			state.isOpen = true;
+			Object.assign(state, action.payload);
+		},
+		closeModal: (state) => {
+			state.isOpen = false;
 		},
 		// handleSidebarCollapsed: (state, action) => {
 		// 	state.isCollapsed = action.payload;
@@ -28,6 +36,6 @@ export const layoutSlice = createSlice({
 	},
 });
 
-export const { handleMobileMenu } = layoutSlice.actions;
+export const { handleMobileMenu, openModal, closeModal } = layoutSlice.actions;
 
 export default layoutSlice.reducer;
