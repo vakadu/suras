@@ -59,7 +59,10 @@ export default function Deactivate() {
 	};
 
 	return (
-		<div className="max-w-[520px] mx-auto flex justify-center items-center h-full">
+		<div className="max-w-[520px] mx-auto flex flex-col justify-center items-center h-full">
+			<div className="mb-24 text-24 font-semibold text-center">
+				What is the reason you are leaving Pemilyy
+			</div>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
 					<FormField

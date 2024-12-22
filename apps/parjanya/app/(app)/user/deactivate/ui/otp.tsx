@@ -65,7 +65,10 @@ export default function Otp() {
 	};
 
 	return (
-		<div className="max-w-[520px] mx-auto flex justify-center items-center h-full">
+		<div className="max-w-[520px] mx-auto flex flex-col justify-center items-center h-full">
+			<div className="mb-24 text-24 font-semibold text-center">
+				Please enter your 6 digit OTP to proceed
+			</div>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="mt-24 w-full">
 					<FormField
