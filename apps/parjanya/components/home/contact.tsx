@@ -43,7 +43,6 @@ export const Contact = () => {
 
 	useEffect(() => {
 		if (!result?.data) return;
-		console.log(result);
 
 		if (result?.data?.status === 'SUCCESS') {
 			form?.reset();

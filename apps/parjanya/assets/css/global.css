@@ -113,7 +113,6 @@ button {
 .header {
 	padding: 12px 0;
 	position: absolute;
-	background: transparent;
 	width: 100%;
 	z-index: 99;
 }

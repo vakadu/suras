@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { ImagePlaceholder } from '@suras/ui';
 import MobileMenu from './mobile-menu';
@@ -13,6 +14,7 @@ export const Header = () => {
 	const logo = isSticky
 		? 'https://pemilyy-assets.s3.ap-south-1.amazonaws.com/logos-new/logo-with-caption-primary.png'
 		: 'https://pemilyy-assets.s3.ap-south-1.amazonaws.com/logos-new/logo-white-1.png';
+	const pathName = usePathname();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -34,7 +36,11 @@ export const Header = () => {
 
 	return (
 		<header className="">
-			<div className={`header ${isSticky ? 'sticky' : ''}`}>
+			<div
+				className={`header ${pathName === '/' ? 'bg-transparent' : 'bg-black-bg'} ${
+					isSticky ? 'sticky' : ''
+				}`}
+			>
 				<div className="container">
 					<div className="flex justify-between items-center h-full">
 						<Link href="/">

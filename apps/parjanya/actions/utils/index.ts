@@ -1,1 +1,1 @@
-export * from './action-client';
+export { actionClient } from './action-client';
