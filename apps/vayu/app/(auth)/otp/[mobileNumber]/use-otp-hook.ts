@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 
-import { signinAction } from '../../../../../actions';
+import { signinAction } from './signin-action';
 
 export default function useOtpHook({ mobile }: { mobile: string }) {
 	const [otp, updateOtp] = useState<string[]>(Array(6).fill(''));

@@ -2,9 +2,9 @@
 
 import { z } from 'zod';
 
-import { ApiEndpoints } from '../../core/primitives';
+import { ApiEndpoints } from '../../../core/primitives';
 import { phoneValidator } from '@suras/utils';
-import { safeActionClient } from '../../core/services';
+import { safeActionClient } from '../../../core/services';
 
 const schema = z.object({
 	mobileNumber: z

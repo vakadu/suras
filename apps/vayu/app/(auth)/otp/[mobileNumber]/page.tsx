@@ -6,8 +6,8 @@ import { toast } from 'sonner';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import useOtpHook from './hooks';
 import { closeModal, openModal } from '../../../../core/store/layout';
+import useOtpHook from './use-otp-hook';
 
 export default function Page() {
 	const params = useParams();
@@ -38,10 +38,12 @@ export default function Page() {
 		if (!result.data) {
 			return;
 		}
+		console.log(result, '=====');
+
 		if (result.data.status === 'ERROR') {
 			toast.error(result.data.msg);
 		}
-	}, [result.data]);
+	}, [result, result.data]);
 
 	return (
 		<div>

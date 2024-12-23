@@ -18,7 +18,7 @@ import {
 	FormItem,
 	FormMessage,
 } from '@suras/ui';
-import { getOtpAction } from '../../../actions';
+import { getOtpAction } from './get-otp-action';
 
 const schema = z.object({
 	mobileNumber: z
